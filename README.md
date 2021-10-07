@@ -5,7 +5,9 @@ This is an R package to implement the models in the paper, "A Bayesian selection
 
 The ABSORB model adjusts for potential outcome reporting bias (ORB) in multivariate meta-analysis (MMA). The non-bias corrected model fits a Bayesian model for MMA with missing outcomes without adjusting for ORB. The D measure computes the Hellinger distance between the bias-corrected (ABSORB) model and the non-bias corrected posterior densities, thereby quantifying the impact of ORB on the results from the MMA.
 
-Note that in order to get this code to work, you need to have the most recent version of JAGS (Version 4.3.0) installed on your computer. You may install JAGS-4.x.y.exe from
+## 1. Installing the Package
+
+In order to get this code to work, you need to have the most recent version of JAGS (Version 4.3.0) installed on your computer. You may install JAGS-4.x.y.exe from
 http://www.sourceforge.net/projects/mcmc-jags/files. Then in R, make sure that R is properly directed to the folder where JAGS-4.3.0 is installed. For example, if JAGS-4.3.0 is saved to your Program Files, you can set the environment variable as follows.
 
 ```
@@ -21,6 +23,7 @@ library(devtools)
 install_github(repo = "raybai07/ABSORB")
 library(ABSORB)
 ``` 
+## 2. Main Functions
 
 There are three main functions in this package, which we will demonstrate how to use below:
 
@@ -29,6 +32,9 @@ There are three main functions in this package, which we will demonstrate how to
 + `BayesNonBiasCorrected` - This function fits the non-bias corrected model of Bai et al. (2021+). This function accepts the arguments: first outcome (`y1`), standard errors for the first outcome (`s1`), second outcome (`y2`), and standard errors for the second outcome (`s2`). Note that either (`y1`, `s1`) or (`y2`, `s2`) may be missing. Missing outcomes should be denoted by `NA`. 
 
 + `D_ORB` - This function computes the D measure of Bai et al. (2021+). The function arguments should be the MCMC samples obtained from fitting the ABSORB model and the MCMC samples obtained from fitting the non-bias corrected model. Values of D close to 0 indicate more negligible impact from ORB, while values close to 1 indicate more severe impact from ORB.
+
+
+## 3. Data Example 
 
 To illustrate the use of this package, we use a real data set of 16 studies from the Cochrane Database of Systematic Reviews. This meta-analysis concerns the effects of exercise therapy for treatment of lower back pain. The outcomes are the mean difference (MD) for function measure (`y1`) and pain measure (`y2`) between the intervention and control groups, and we want to estimate the population treatment effect of exercise therapy for function measure (`mu1`) and pain measure (`mu2`) respectively. This data can be obtained from Cochrane Database ID:CD000335 (DOI: 10.1002/14651858.CD000335.pub2), but we reproduce it below for the sake of illustration.
 
