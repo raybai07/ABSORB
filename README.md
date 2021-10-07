@@ -9,7 +9,7 @@ Note that in order to get this code to work, you need to have the most recent ve
 http://www.sourceforge.net/projects/mcmc-jags/files. Then in R, make sure that the R package rjags is properly directed to the folder where JAGS-4.3.0 is installed. For example, if JAGS-4.3.0 is saved to your Program Files, you can set the environment variable as follows.
 
 ```
-# Edit the location where you have saved JAGS-4.3.0 on your location machine 
+# Edit the location where you have saved JAGS-4.3.0 on your local machine 
 Sys.setenv(JAGS_HOME="C:/Program Files/JAGS/JAGS-4.3.0")
 ```
 
