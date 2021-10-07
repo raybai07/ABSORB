@@ -1,0 +1,25 @@
+Package: ABSORB
+Type: Package
+Title: A Bayesian Selection Model for Correcting Outcome Reporting Bias (ABSORB)
+Version: 0.0.0.1000
+Date: 2021-10-06
+Author: Ray Bai
+Maintainer: Ray Bai <raybaistat@gmail.com>
+Description: MCMC algorithms for fitting the ABSORB model and non-bias corrected models of Bai et al. (2021+). Also computes the D measure (Hellinger distance) between the bias-corrected and non-bias corrected posterior densities. 
+License: GPL (>= 2)
+LazyData: TRUE
+URL: https://github.com/raybai07/ABSORB
+BugReports: https://github.com/raybai07/ABSORB/issues
+RoxygenNote: 6.1.1
+Suggests:
+    MASS,
+    ggplot2,
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+Depends: R (>= 3.6.0)
+Imports:
+    rjags,
+    statip,
+    dad
