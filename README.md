@@ -6,14 +6,14 @@ This is an R package to implement the models in the paper, "A Bayesian selection
 The ABSORB model adjusts for potential outcome reporting bias (ORB) in multivariate meta-analysis (MMA). The non-bias corrected model fits a Bayesian model for MMA with missing outcomes without adjusting for ORB. The D measure computes the Hellinger distance between the bias-corrected (ABSORB) model and the non-bias corrected posterior densities, thereby quantifying the impact of ORB on the results from the MMA.
 
 Note that in order to get this code to work, you need to have the most recent version of JAGS (Version 4.3.0) installed on your computer. You may install JAGS-4.x.y.exe from
-http://www.sourceforge.net/projects/mcmc-jags/files. Then in R, make sure that the R package rjags is properly directed to the folder where JAGS-4.3.0 is installed. For example, if JAGS-4.3.0 is saved to your Program Files, you can set the environment variable as follows.
+http://www.sourceforge.net/projects/mcmc-jags/files. Then in R, make sure that R is properly directed to the folder where JAGS-4.3.0 is installed. For example, if JAGS-4.3.0 is saved to your Program Files, you can set the environment variable as follows.
 
 ```
 # Edit the location where you have saved JAGS-4.3.0 on your local machine 
 Sys.setenv(JAGS_HOME="C:/Program Files/JAGS/JAGS-4.3.0")
 ```
 
-Now, use the following code to install and load the ABSORB package. 
+Now, use the following R code to install and load the ABSORB package. 
 
 ```
 # Install and load ABSORB package
@@ -97,7 +97,7 @@ mu2.nobiascor.CI
 ```
 ![Alt text](images/MMAcredibleintervals.png)
 
-In particular, we see that there is a change in the statistical significance for mu1 (function measure). The 95 percent posterior credible interval for mu1 changes from (-3.52, -0.38) under the non-bias corrected model to (-2.43, 0.72) under the ABSORB model. This indicates that after adjusting for ORB, the mean effect of exercise therapy on function measure no longer statistically significant.
+In particular, we see that there is a change in the statistical significance for mu1 (function measure). The 95 percent posterior credible interval for mu1 changes from (-3.52, -0.38) under the non-bias corrected model to (-2.43, 0.72) under the ABSORB model. This indicates that after adjusting for ORB, the mean effect of exercise therapy on function measure is no longer statistically significant.
 
 We can also compute the D measure for mu1, mu2, or (mu1, mu2) jointly. The D measure quantifies the impact of ORB by calculating the Hellinger distance between the bias-corrected and non-bias corrected posteriors. The D measure lies between 0 and 1, with values close to 0 indicating less impact from ORB and values close to 1 indicating more severe impact from ORB.
 
