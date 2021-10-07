@@ -9,6 +9,7 @@ Use the following code to install and load the ABSORB package.
 
 ```
 # Install and load ABSORB package
+library(devtools)
 install_github(repo = "raybai07/ABSORB")
 library(ABSORB)
 ``` 
