@@ -5,7 +5,15 @@ This is an R package to implement the models in the paper, "A Bayesian selection
 
 The ABSORB model adjusts for potential outcome reporting bias (ORB) in multivariate meta-analysis (MMA). The non-bias corrected model fits a Bayesian model for MMA with missing outcomes without adjusting for ORB. The D measure computes the Hellinger distance between the bias-corrected (ABSORB) model and the non-bias corrected posterior densities, thereby quantifying the impact of ORB on the results from the MMA.
 
-Use the following code to install and load the ABSORB package.
+Note that in order to get this code to work, you need to have the most recent version of JAGS (Version 4.3.0) installed on your computer. You may install JAGS-4.x.y.exe from
+http://www.sourceforge.net/projects/mcmc-jags/files. Then in R, make sure that the R package rjags is properly directed to the folder where JAGS-4.3.0 is installed. For example, if JAGS-4.3.0 is saved to your Program Files, you can set the environment variable as follows.
+
+```
+# Edit the location where you have saved JAGS-4.3.0 on your location machine 
+Sys.setenv(JAGS_HOME="C:/Program Files/JAGS/JAGS-4.3.0")
+```
+
+Now, use the following code to install and load the ABSORB package. 
 
 ```
 # Install and load ABSORB package
