@@ -97,7 +97,7 @@ mu2.nobiascor.CI
 ```
 ![Alt text](images/MMAcredibleintervals.png)
 
-In particular, we see that there is a change in the statistical significance for mu1 (function measure). The 95 percent posterior credible for mu1 changes from (-3.52, -0.38) under the non-bias corrected model to (-2.43, 0.72) under the ABSORB model. This indicates that after adjusting for ORB, the mean effect of exercise therapy on function measure no longer statistically significant.
+In particular, we see that there is a change in the statistical significance for mu1 (function measure). The 95 percent posterior credible interval for mu1 changes from (-3.52, -0.38) under the non-bias corrected model to (-2.43, 0.72) under the ABSORB model. This indicates that after adjusting for ORB, the mean effect of exercise therapy on function measure no longer statistically significant.
 
 We can also compute the D measure for mu1, mu2, or (mu1, mu2) jointly. The D measure quantifies the impact of ORB by calculating the Hellinger distance between the bias-corrected and non-bias corrected posteriors. The D measure lies between 0 and 1, with values close to 0 indicating less impact from ORB and values close to 1 indicating more severe impact from ORB.
 
