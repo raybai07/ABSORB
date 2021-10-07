@@ -24,13 +24,13 @@ library(ABSORB)
 
 There are three main functions in this package, which we will demonstrate how to use below:
 
-ABSORB - This function fits the ABSORB model of Bai et al. (2021+). The function accepts the arguments: study sizes, first outcome (y1), standard errors for the first outcome (s1), second outcome (y2), and standard errors for the second outcome (s2). Note that either (y1, s1) or (y2, s2) may be missing. Missing outcomes should be denoted by NA.  
++ `ABSORB` - This function fits the ABSORB model of Bai et al. (2021+). The function accepts the arguments: study sizes, first outcome (`y1`), standard errors for the first outcome (`s1`), second outcome (`y2`), and standard errors for the second outcome (`s2`). Note that either (`y1`, `s1`) or (`y2`, `s2`) may be missing. Missing outcomes should be denoted by NA.  
 
-BayesNonBiasCorrected - This function fits the non-bias corrected model of Bai et al. (2021+). This function accepts the arguments: first outcome (y1), standard errors for the first outcome (s1), second outcome (y2), and standard errors for the second outcome (s2). Note that either (y1, s1) or (y2, s2) may be missing. Missing outcomes should be denoted by NA. 
++ `BayesNonBiasCorrected` - This function fits the non-bias corrected model of Bai et al. (2021+). This function accepts the arguments: first outcome (`y1`), standard errors for the first outcome (`s1`), second outcome (`y2`), and standard errors for the second outcome (`s2`). Note that either (`y1`, `s1`) or (`y2`, `s2`) may be missing. Missing outcomes should be denoted by NA. 
 
-D_ORB - This function computes the D measure of Bai et al. (2021+). The function arguments should be the MCMC samples obtained from fitting the ABSORB model and the MCMC samples obtained from fitting the non-bias corrected model. Values of D close to 0 indicate more negligible impact from ORB, while values close to 1 indicate more severe impact from ORB.
++ `D_ORB` - This function computes the D measure of Bai et al. (2021+). The function arguments should be the MCMC samples obtained from fitting the ABSORB model and the MCMC samples obtained from fitting the non-bias corrected model. Values of D close to 0 indicate more negligible impact from ORB, while values close to 1 indicate more severe impact from ORB.
 
-To illustrate the use of this package, we use a real data set of 16 studies from the Cochrane Database of Systematic Reviews. This meta-analysis concerns the effects of exercise therapy for treatment of lower back pain. The outcomes are the mean difference (MD) for function measure (y1) and pain measure (y2) between the intervention and control groups, and we want to estimate the population treatment effect of exercise therapy for function measure (mu1) and pain measure (mu2) respectively. This data can be obtained from Cochrane Database ID:CD000335 (DOI: 10.1002/14651858.CD000335.pub2), but we reproduce it below for the sake of illustration.
+To illustrate the use of this package, we use a real data set of 16 studies from the Cochrane Database of Systematic Reviews. This meta-analysis concerns the effects of exercise therapy for treatment of lower back pain. The outcomes are the mean difference (MD) for function measure (`y1`) and pain measure (`y2`) between the intervention and control groups, and we want to estimate the population treatment effect of exercise therapy for function measure (`mu1`) and pain measure (`mu2`) respectively. This data can be obtained from Cochrane Database ID:CD000335 (DOI: 10.1002/14651858.CD000335.pub2), but we reproduce it below for the sake of illustration.
 
 ```{r, eval=FALSE}
 # Real data from an MMA on the effects of exercise therapy on lower back pain
@@ -53,7 +53,7 @@ Of the 16 studies in this meta-analysis, we see that 3 studies do not report the
 
 ![Alt text](images/MMAexample.png)
 
-We now fit the ABSORB model and the non-bias corrected models using the ABSORB and BayesNonBiasCorrected functions. Note that the study sizes are only needed for the ABSORB model, not for the non-bias corrected model. In addition, the user has to specify a seed if he or she wants to reproduce the exact same results from their analysis. The default number of burn-in samples (burn) is 10,000 and the default number of total MCMC draws (nmc) is 50,000. However, the user can change these values if more or fewer iterations are necessary for convergence.
+We now fit the ABSORB model and the non-bias corrected models using the `ABSORB` and `BayesNonBiasCorrected` functions. Note that the study sizes are only needed for the ABSORB model, not for the non-bias corrected model. In addition, the user has to specify a `seed` if he or she wants to reproduce the exact same results from their analysis. The default number of burn-in samples (`burn`) is 10,000 and the default number of total MCMC draws (`nmc`) is 50,000. However, the user can change these values if more or fewer iterations are necessary for convergence.
 
 ```{r, eval=FALSE}
 # Fit ABSORB model
@@ -66,7 +66,7 @@ nobias.mod <- BayesNonBiasCorrected(y1, s1, y2, s2, seed=12345,
 
 ```
 
-Having fit these models, we can now obtain the point estimates for the model parameters, denoted by [parameter].hat. We can also use the MCMC samples of the model parameters (denoted by [parameter].samples) to obtain 95 percent posterior credible intervals and other summary statistics or to plot the posterior densities. Below, we obtain the posterior means for the population treatment effects (mu1, mu2) and the between-study heterogeneity parameters (tau1, tau2), as well as the 95 percent posterior credible intervals for mu1 and mu2.
+Having fit these models, we can now obtain the point estimates for the model parameters, denoted by `[parameter].hat`. We can also use the MCMC samples of the model parameters (denoted by `[parameter].samples`) to obtain 95 percent posterior credible intervals and other summary statistics or to plot the posterior densities. Below, we obtain the posterior means for the population treatment effects (`mu1.hat`, `mu2.hat`) and the between-study heterogeneity parameters (`tau1.hat`, `tau2.hat`), as well as the 95 percent posterior credible intervals for `mu1` and `mu2` using `mu1.samples` and `mu2.samples`.
 
 ```{r, eval=FALSE}
 # Point estimates for (mu1, mu2, tau1, tau2) in ABSORB (bias-corrected) model
@@ -97,9 +97,9 @@ mu2.nobiascor.CI
 ```
 ![Alt text](images/MMAcredibleintervals.png)
 
-In particular, we see that there is a change in the statistical significance for mu1 (function measure). The 95 percent posterior credible interval for mu1 changes from (-3.52, -0.38) under the non-bias corrected model to (-2.43, 0.72) under the ABSORB model. This indicates that after adjusting for ORB, the mean effect of exercise therapy on function measure is no longer statistically significant.
+In particular, we see that there is a change in the statistical significance for `mu1` (function measure). The 95 percent posterior credible interval for `mu1` changes from (-3.52, -0.38) under the non-bias corrected model to (-2.43, 0.72) under the ABSORB model. This indicates that after adjusting for ORB, the mean effect of exercise therapy on function measure is no longer statistically significant.
 
-We can also compute the D measure for mu1, mu2, or (mu1, mu2) jointly. The D measure quantifies the impact of ORB by calculating the Hellinger distance between the bias-corrected and non-bias corrected posteriors. The D measure lies between 0 and 1, with values close to 0 indicating less impact from ORB and values close to 1 indicating more severe impact from ORB.
+We can also compute the D measure for `mu1`, `mu2`, or `(mu1, mu2)` jointly using the function `D_ORB`. The D measure quantifies the impact of ORB by calculating the Hellinger distance between the bias-corrected and non-bias corrected posteriors. The D measure lies between 0 and 1, with values close to 0 indicating less impact from ORB and values close to 1 indicating more severe impact from ORB.
 
 ```{r, eval=FALSE}
 # Compute D measure for first outcome
@@ -117,7 +117,7 @@ D.mu1mu2 <- D_ORB(cbind(absorb.mod$mu1.samples, absorb.mod$mu2.samples),
 
 We see that the D measure is 0.43 for the first outcome, 0.12 for the second outcome, and 0.28 for both outcomes. Clearly, there is more severe impact from ORB for mu1 in this case. In fact, as we showed above, the qualitative conclusion from the MMA changes after bias correction. After adjusting for ORB with the ABSORB model, the effect of exercise therapy on function measure (mu1) is no longer statistically significant. 
 
-Finally, we plot the posterior densities for mu1 and mu2 and the contours of the joint posterior for (mu1, mu2) using the posterior samples for mu1 and mu2. This allows us to visualize our results before bias correction (non-bias corrected) and after bias correction (ABSORB). 
+Finally, we plot the posterior densities for `mu1` and `mu2` and the contours of the joint posterior for `(mu1, mu2)` using the posterior samples for mu1 and mu2. This allows us to visualize our results before bias correction (non-bias corrected) and after bias correction (ABSORB). 
 
 ![Alt text](images/mu1posteriors.png)
 ![Alt text](images/mu2posteriors.png)
