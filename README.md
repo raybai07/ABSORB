@@ -24,9 +24,9 @@ library(ABSORB)
 
 There are three main functions in this package, which we will demonstrate how to use below:
 
-+ `ABSORB` - This function fits the ABSORB model of Bai et al. (2021+). The function accepts the arguments: study sizes, first outcome (`y1`), standard errors for the first outcome (`s1`), second outcome (`y2`), and standard errors for the second outcome (`s2`). Note that either (`y1`, `s1`) or (`y2`, `s2`) may be missing. Missing outcomes should be denoted by NA.  
++ `ABSORB` - This function fits the ABSORB model of Bai et al. (2021+). The function accepts the arguments: study sizes (`study_sizes'), first outcome (`y1`), standard errors for the first outcome (`s1`), second outcome (`y2`), and standard errors for the second outcome (`s2`). Note that either (`y1`, `s1`) or (`y2`, `s2`) may be missing. Missing outcomes should be denoted by `NA`.  
 
-+ `BayesNonBiasCorrected` - This function fits the non-bias corrected model of Bai et al. (2021+). This function accepts the arguments: first outcome (`y1`), standard errors for the first outcome (`s1`), second outcome (`y2`), and standard errors for the second outcome (`s2`). Note that either (`y1`, `s1`) or (`y2`, `s2`) may be missing. Missing outcomes should be denoted by NA. 
++ `BayesNonBiasCorrected` - This function fits the non-bias corrected model of Bai et al. (2021+). This function accepts the arguments: first outcome (`y1`), standard errors for the first outcome (`s1`), second outcome (`y2`), and standard errors for the second outcome (`s2`). Note that either (`y1`, `s1`) or (`y2`, `s2`) may be missing. Missing outcomes should be denoted by `NA`. 
 
 + `D_ORB` - This function computes the D measure of Bai et al. (2021+). The function arguments should be the MCMC samples obtained from fitting the ABSORB model and the MCMC samples obtained from fitting the non-bias corrected model. Values of D close to 0 indicate more negligible impact from ORB, while values close to 1 indicate more severe impact from ORB.
 
