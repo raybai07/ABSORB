@@ -1,7 +1,7 @@
 # ABSORB
 R package for implementing A Bayesian Selection model for correcting Outcome Reporting Bias (ABSORB)
 
-This is an R package to implement the models in the paper, "A Bayesian selection model for correcting outcome reporting bias with application to a meta-analysis on heart failure interventions" by Ray Bai, Xiaokang Liu, Lifeng Lin, Yulun Liu, Stephen E. Kimmel, Haitao Chu, and Yong Chen.  
+This is an R package to implement the models in the paper, "A Bayesian selection model for correcting outcome reporting bias with application to a meta-analysis on heart failure interventions" by Ray Bai, Xiaokang Liu, Lifeng Lin, Yulun Liu, Stephen E. Kimmel, Haitao Chu, and Yong Chen (pre-print, 2021+).  
 
 The ABSORB model adjusts for potential outcome reporting bias (ORB) in multivariate meta-analysis (MMA). The non-bias corrected model fits a Bayesian model for MMA with missing outcomes without adjusting for ORB. The D measure computes the Hellinger distance between the bias-corrected (ABSORB) model and the non-bias corrected posterior densities, thereby quantifying the impact of ORB on the results from the MMA.
 
@@ -118,6 +118,7 @@ D.mu1mu2 <- D_ORB(cbind(absorb.mod$mu1.samples, absorb.mod$mu2.samples),
 We see that the D measure is 0.43 for the first outcome, 0.12 for the second outcome, and 0.28 for both outcomes. Clearly, there is more severe impact from ORB for mu1 in this case. In fact, as we showed above, the qualitative conclusion from the MMA changes after bias correction. After adjusting for ORB with the ABSORB model, the effect of exercise therapy on function measure (mu1) is no longer statistically significant. 
 
 Finally, we plot the posterior densities for mu1 and mu2 and the contours of the joint posterior for (mu1, mu2) using the posterior samples for mu1 and mu2. This allows us to visualize our results before bias correction (non-bias corrected) and after bias correction (ABSORB). 
+
 ![Alt text](images/mu1posteriors.png)
 ![Alt text](images/mu2posteriors.png)
 ![Alt text](images/jointposteriors.png)
